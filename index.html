@@ -8,17 +8,27 @@
     /* 1. New Google Font for a softer look */
     @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
 
+    /* Confetti Pattern Texture */
     body {
       margin: 0;
       padding: 0;
       font-family: 'Balsamiq Sans', cursive, sans-serif;
       text-align: center;
-      background: linear-gradient(135deg, #ffe6f0, #fff8dc);
-      overflow-x: hidden; /* Prevent horizontal scroll on mobile */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow-x: hidden;
+
+      /* Animated Gradient Background */
+      background: linear-gradient(135deg, #ffe6f0, #fff8dc);
+      background-size: 400% 400%;
+      animation: colorShift 15s ease infinite;
+
+      /* Subtle Confetti Texture Overlay */
+      background-image: radial-gradient(#ffc0cb 0.5px, transparent 0.5px),
+                        radial-gradient(#ffd700 0.5px, transparent 0.5px);
+      background-size: 20px 20px;
     }
 
     /* Main Content Styling */
@@ -27,21 +37,27 @@
       padding: 20px;
       max-width: 90%;
       z-index: 10;
-      background: rgba(255, 255, 255, 0.8);
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px; /* More rounded */
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      border: 4px solid #ff4081; /* Cute border */
+      transition: transform 0.3s ease;
+    }
+    .content-container:hover {
+        transform: scale(1.02);
     }
 
+
     h1 {
-      font-size: clamp(2rem, 8vw, 3.5rem); /* Responsive font size */
+      font-size: clamp(2rem, 8vw, 3.5rem);
       color: #ff4081;
-      text-shadow: 3px 3px #ffd1dc;
+      text-shadow: 4px 4px 0 #ffd1dc;
     }
     
-    /* 2. CSS for the Buzzing Bee Animation */
+    /* Buzzing Bee Animation */
     .bee-buzz {
       display: inline-block;
-      animation: buzz 0.2s infinite alternate; /* Fast wiggle animation */
+      animation: buzz 0.2s infinite alternate; 
     }
 
     p {
@@ -50,9 +66,9 @@
       margin-top: 10px;
     }
 
-    /* Floating Hearts Setup */
+    /* Floating Hearts Setup (Unchanged) */
     .hearts {
-      position: fixed; /* Use fixed for better covering of viewport */
+      position: fixed; 
       width: 100%;
       height: 100%;
       top: 0;
@@ -62,9 +78,9 @@
     }
     .heart {
       position: absolute;
-      width: 25px; /* Slightly larger hearts */
+      width: 25px; 
       height: 25px;
-      background: #ff7f96; /* Lighter pinkish red */
+      background: #ff7f96; 
       box-shadow: 0 0 5px rgba(255, 64, 129, 0.5);
       transform: rotate(45deg);
       animation: float 8s infinite ease-in;
@@ -81,7 +97,7 @@
     .heart::before { top: -12.5px; left: 0; }
     .heart::after { left: -12.5px; top: 0; }
     
-    /* Button Styling with better hover effect */
+    /* Button Styling */
     button {
       margin-top: 30px;
       padding: 15px 30px;
@@ -94,14 +110,15 @@
       transition: all 0.3s ease;
       box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
       font-weight: bold;
+      letter-spacing: 1px;
     }
     button:hover {
       background-color: #e73370;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255, 64, 129, 0.6);
+      transform: scale(1.05); /* Added scale up */
+      box-shadow: 0 0 25px rgba(255, 64, 129, 0.8); /* Added glow */
     }
 
-    /* --- Message Box Styles (New) --- */
+    /* --- Message Box Styles --- */
     .message-box {
         position: fixed;
         top: 0;
@@ -109,20 +126,20 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.7);
-        display: none; /* Hidden by default */
+        display: none;
         justify-content: center;
         align-items: center;
         z-index: 100;
-        backdrop-filter: blur(5px);
+        backdrop-filter: blur(8px); /* Stronger blur */
     }
 
     .message-content {
         background: white;
         padding: 30px;
-        border-radius: 20px;
+        border-radius: 25px;
         max-width: 90%;
-        width: 400px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        width: 450px; /* Slightly wider */
+        box-shadow: 0 0 40px rgba(255, 64, 129, 0.8), 0 10px 30px rgba(0, 0, 0, 0.3); /* Soft pink glow */
         transform: scale(0.8);
         opacity: 0;
         transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bounce effect */
@@ -131,37 +148,39 @@
     .message-box.visible .message-content {
         transform: scale(1);
         opacity: 1;
+        animation: wiggle 0.4s 1 ease-out; /* Add quick wiggle on appearance */
     }
 
     .message-content h2 {
         color: #ff4081;
-        font-size: 1.8rem;
+        font-size: 2rem;
         margin-top: 0;
-        border-bottom: 2px solid #ff4081;
-        padding-bottom: 10px;
+        border-bottom: 3px solid #ffd1dc;
+        padding-bottom: 15px;
     }
 
     .message-content .message-text {
         color: #555;
-        font-size: 1.1rem;
-        line-height: 1.6;
+        font-size: 1.2rem;
+        line-height: 1.7;
         text-align: left;
     }
 
     .close-btn {
         display: block;
-        margin-top: 20px;
-        padding: 10px 20px;
+        margin-top: 25px;
+        padding: 12px 25px;
         background-color: #333;
         color: white;
         border: none;
-        border-radius: 15px;
+        border-radius: 20px;
         cursor: pointer;
-        transition: background-color 0.2s;
+        transition: background-color 0.3s, transform 0.2s;
         font-weight: bold;
     }
     .close-btn:hover {
         background-color: #ff4081;
+        transform: scale(1.05);
     }
 
 
@@ -174,6 +193,18 @@
     @keyframes buzz {
       from { transform: translateY(-1px) rotate(-2deg); }
       to { transform: translateY(1px) rotate(2deg); }
+    }
+
+    @keyframes colorShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes wiggle {
+        0%, 100% { transform: scale(1) rotate(0deg); }
+        25% { transform: scale(1.05) rotate(-1deg); }
+        75% { transform: scale(1.05) rotate(1deg); }
     }
   </style>
 </head>
@@ -189,14 +220,15 @@
   <!-- The new message modal structure -->
   <div class="message-box" id="messageBox">
     <div class="message-content">
+        <!-- Message content is placed here -->
         <h2>A Message Just For You</h2>
         <p class="message-text">
-            My Dearest Angry Bee,
+            To my favorite **Angry Bee** 🐝,
             <br><br>
-            I know you like to pretend to be tough, but you're the kindest, funniest, and most beautiful person I know. Every day with you is sweeter than the best honey. You make my world feel brighter, even on the days I'm feeling glum. Thank you for being my constant, wonderful partner. Wishing you a birthday filled with as much joy as you bring into my life! I love you more than words can say.
+            Happy Birthday! You are the perfect mix of fierce and kind, and I wouldn't trade your sweet, stinging personality for anything in the world. Thank you for making every moment an adventure. I hope your day is as bright and wonderful as you are.
             <br><br>
-            Love always,
-            Your [Your Nickname Here - Change This!]
+            I love you always,
+            Your King
         </p>
         <button class="close-btn" onclick="hideMessage()">Close and Celebrate!</button>
     </div>
@@ -213,7 +245,7 @@
       // 1. Make the container visible immediately
       messageBox.style.display = 'flex'; 
       
-      // 2. Wait a small moment, then add the 'visible' class to trigger the CSS transition (bounce)
+      // 2. Wait a small moment, then add the 'visible' class to trigger the CSS transition (bounce and wiggle)
       setTimeout(() => {
           messageBox.classList.add('visible');
       }, 10);
@@ -232,7 +264,7 @@
       }, 500);
     }
     
-    // --- Floating Hearts Logic (Unchanged) ---
+    // --- Floating Hearts Logic ---
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
