@@ -1,31 +1,58 @@
-html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday Angry Bee 🐝</title>
   <style>
+    /* 1. New Google Font for a softer look */
+    @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
+
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Comic Sans MS', cursive, sans-serif;
+      font-family: 'Balsamiq Sans', cursive, sans-serif;
       text-align: center;
       background: linear-gradient(135deg, #ffe6f0, #fff8dc);
-      overflow: hidden;
+      overflow-x: hidden; /* Prevent horizontal scroll on mobile */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
+
+    /* Main Content Styling */
+    .content-container {
+      margin-top: 50px;
+      padding: 20px;
+      max-width: 90%;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
     h1 {
-      font-size: 3rem;
-      margin-top: 80px;
+      font-size: clamp(2rem, 8vw, 3.5rem); /* Responsive font size */
       color: #ff4081;
-      text-shadow: 2px 2px #ffd1dc;
+      text-shadow: 3px 3px #ffd1dc;
     }
+    
+    /* 2. CSS for the Buzzing Bee Animation */
+    .bee-buzz {
+      display: inline-block;
+      animation: buzz 0.2s infinite alternate; /* Fast wiggle animation */
+    }
+
     p {
-      font-size: 1.5rem;
+      font-size: clamp(1rem, 4vw, 1.5rem);
       color: #333;
       margin-top: 10px;
     }
+
+    /* Floating Hearts Setup */
     .hearts {
-      position: absolute;
+      position: fixed; /* Use fixed for better covering of viewport */
       width: 100%;
       height: 100%;
       top: 0;
@@ -35,9 +62,10 @@ html
     }
     .heart {
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
+      width: 25px; /* Slightly larger hearts */
+      height: 25px;
+      background: #ff7f96; /* Lighter pinkish red */
+      box-shadow: 0 0 5px rgba(255, 64, 129, 0.5);
       transform: rotate(45deg);
       animation: float 8s infinite ease-in;
     }
@@ -45,55 +73,179 @@ html
     .heart::after {
       content: '';
       position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
+      width: 25px;
+      height: 25px;
+      background: #ff7f96;
       border-radius: 50%;
     }
-    .heart::before { top: -10px; left: 0; }
-    .heart::after { left: -10px; top: 0; }
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(0.5) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.2) rotate(45deg); opacity: 0; }
-    }
+    .heart::before { top: -12.5px; left: 0; }
+    .heart::after { left: -12.5px; top: 0; }
+    
+    /* Button Styling with better hover effect */
     button {
       margin-top: 30px;
       padding: 15px 30px;
       font-size: 1.2rem;
       border: none;
-      border-radius: 25px;
+      border-radius: 30px;
       background-color: #ff4081;
       color: white;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+      font-weight: bold;
     }
     button:hover {
       background-color: #e73370;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 64, 129, 0.6);
+    }
+
+    /* --- Message Box Styles (New) --- */
+    .message-box {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: none; /* Hidden by default */
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        backdrop-filter: blur(5px);
+    }
+
+    .message-content {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        max-width: 90%;
+        width: 400px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        transform: scale(0.8);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Bounce effect */
+    }
+    
+    .message-box.visible .message-content {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    .message-content h2 {
+        color: #ff4081;
+        font-size: 1.8rem;
+        margin-top: 0;
+        border-bottom: 2px solid #ff4081;
+        padding-bottom: 10px;
+    }
+
+    .message-content .message-text {
+        color: #555;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        text-align: left;
+    }
+
+    .close-btn {
+        display: block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        font-weight: bold;
+    }
+    .close-btn:hover {
+        background-color: #ff4081;
+    }
+
+
+    /* Keyframe Animations */
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0.5) rotate(45deg); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(1.2) rotate(45deg); opacity: 0; }
+    }
+    
+    @keyframes buzz {
+      from { transform: translateY(-1px) rotate(-2deg); }
+      to { transform: translateY(1px) rotate(2deg); }
     }
   </style>
 </head>
 <body>
-  <h1>Happy Birthday Angry Bee 🐝</h1>
-  <p>You’re the sweetest sting in my life 💕</p>
-  <button onclick="showMessage()">Click Me 🎁</button>
+  <div class="content-container">
+    <h1>Happy Birthday Angry Bee <span class="bee-buzz">🐝</span></h1>
+    <p>You’re the sweetest sting in my life 💕</p>
+    <button id="revealButton">Click Me 🎁</button>
+  </div>
 
   <div class="hearts" id="hearts"></div>
+  
+  <!-- The new message modal structure -->
+  <div class="message-box" id="messageBox">
+    <div class="message-content">
+        <h2>A Message Just For You</h2>
+        <p class="message-text">
+            My Dearest Angry Bee,
+            <br><br>
+            I know you like to pretend to be tough, but you're the kindest, funniest, and most beautiful person I know. Every day with you is sweeter than the best honey. You make my world feel brighter, even on the days I'm feeling glum. Thank you for being my constant, wonderful partner. Wishing you a birthday filled with as much joy as you bring into my life! I love you more than words can say.
+            <br><br>
+            Love always,
+            Your [Your Nickname Here - Change This!]
+        </p>
+        <button class="close-btn" onclick="hideMessage()">Close and Celebrate!</button>
+    </div>
+  </div>
 
   <script>
+    const messageBox = document.getElementById('messageBox');
+    const revealButton = document.getElementById('revealButton');
+
+    // --- Message Reveal Functions ---
+    revealButton.addEventListener('click', showMessage);
+
     function showMessage() {
-      alert("Happy Birthday Angry Bee! 🐝💖 You make my world sweeter every day.");
+      // 1. Make the container visible immediately
+      messageBox.style.display = 'flex'; 
+      
+      // 2. Wait a small moment, then add the 'visible' class to trigger the CSS transition (bounce)
+      setTimeout(() => {
+          messageBox.classList.add('visible');
+      }, 10);
+      
+      // Optional: Hide the main button after clicking
+      revealButton.style.display = 'none'; 
     }
 
-    // generate floating hearts
+    function hideMessage() {
+      // 1. Trigger the CSS transition reversal
+      messageBox.classList.remove('visible');
+      
+      // 2. Wait for the transition to finish (0.5s + margin) before setting display: none
+      setTimeout(() => {
+          messageBox.style.display = 'none';
+      }, 500);
+    }
+    
+    // --- Floating Hearts Logic (Unchanged) ---
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "heart";
-      heart.style.left = Math.random() * 100 + "vw";
+      // Ensure heart starts within 80vw to avoid overflow off-screen on some mobiles
+      heart.style.left = Math.random() * 80 + 10 + "vw"; 
       heart.style.animationDuration = (5 + Math.random() * 5) + "s";
       document.getElementById("hearts").appendChild(heart);
       setTimeout(() => heart.remove(), 8000);
     }
+    
+    // Start the hearts immediately
     setInterval(createHeart, 500);
+    
   </script>
 </body>
 </html>
