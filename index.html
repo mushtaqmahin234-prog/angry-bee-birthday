@@ -3,16 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Birthday Angry Bee 🐝</title>
+  <title>Happy Birthday My Love 💖</title>
   <style>
-    /* 1. New Google Font for a softer look */
-    @import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@400;700&display=swap');
+    /* New Elegant/Cute Font */
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
 
-    /* Confetti Pattern Texture and Animated Background */
+    /* Variables for Easy Color Switching */
+    :root {
+        --primary-color: #8A2BE2; /* BlueViolet (deep lavender) */
+        --secondary-color: #FF69B4; /* Hot Pink */
+        --background-soft: #fcf4ff; /* Lightest Lavender */
+        --text-color: #4a286e; /* Dark Purple text */
+        --highlight-color: #FFD700; /* Gold */
+    }
+
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Balsamiq Sans', cursive, sans-serif;
+      font-family: 'Quicksand', sans-serif;
       text-align: center;
       min-height: 100vh;
       display: flex;
@@ -20,127 +28,128 @@
       align-items: center;
       overflow-x: hidden;
       cursor: default;
-
-      /* Animated Gradient Background */
-      background: linear-gradient(135deg, #ffe6f0, #fff8dc);
+      
+      /* Animated Gradient Background: Soft Rose Gold and Lavender */
+      background: linear-gradient(135deg, var(--background-soft), #f0e6ff);
       background-size: 400% 400%;
       animation: colorShift 15s ease infinite;
 
-      /* Subtle Confetti Texture Overlay */
-      background-image: radial-gradient(#ffc0cb 0.5px, transparent 0.5px),
-                        radial-gradient(#ffd700 0.5px, transparent 0.5px);
-      background-size: 20px 20px;
+      /* Confetti Texture Overlay */
+      background-image: radial-gradient(var(--secondary-color) 0.5px, transparent 0.5px),
+                        radial-gradient(var(--primary-color) 0.5px, transparent 0.5px);
+      background-size: 25px 25px;
     }
     
-    /* Honeycomb Decoration */
-    .honeycomb-container {
+    /* Floating Stars Decoration */
+    .star-container {
         position: fixed;
         width: 100%;
         height: 100%;
         top: 0;
         left: 0;
-        z-index: -2; /* Below everything */
+        z-index: -2;
         pointer-events: none;
         overflow: hidden;
     }
-    .honeycomb {
+    .star {
         position: absolute;
-        width: 100px;
-        height: 100px;
-        background-color: rgba(255, 223, 186, 0.2); /* Soft honey color */
-        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-        animation: fadeAndMove 15s infinite ease-in-out;
+        color: var(--highlight-color);
+        font-size: 2rem;
+        animation: starTwinkle 10s infinite ease-in-out;
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
     }
-    .honeycomb:nth-child(2) { animation-delay: 5s; }
-    .honeycomb:nth-child(3) { animation-delay: 10s; }
+    .star:nth-child(2) { animation-delay: 3s; font-size: 1.5rem; }
+    .star:nth-child(3) { animation-delay: 6s; font-size: 2.5rem; }
+    .star:nth-child(4) { animation-delay: 9s; font-size: 1.8rem; }
 
 
     /* Main Content Styling */
     .content-container {
       margin-top: 50px;
-      padding: 20px;
+      padding: 30px;
       max-width: 90%;
       z-index: 10;
-      background: rgba(255, 255, 255, 0.98);
-      border-radius: 25px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
-      border: 4px solid #ff4081;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 35px;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+      border: 5px solid var(--primary-color);
       transition: transform 0.3s ease;
-    }
-    .content-container:hover {
-        transform: scale(1.02);
+      position: relative; /* Needed for the floating frame */
     }
 
     h1 {
-      font-size: clamp(2rem, 8vw, 3.5rem);
-      color: #ff4081;
-      text-shadow: 4px 4px 0 #ffd1dc;
+      font-size: clamp(2.5rem, 9vw, 4rem);
+      color: var(--primary-color);
+      text-shadow: 5px 5px 0 var(--secondary-color);
+      letter-spacing: 2px;
     }
     
     /* Buzzing Bee Animation */
     .bee-buzz {
       display: inline-block;
       animation: buzz 0.2s infinite alternate; 
+      font-size: 1.2em;
     }
 
     p {
-      font-size: clamp(1rem, 4vw, 1.5rem);
-      color: #333;
-      margin-top: 10px;
+      font-size: clamp(1.1rem, 4vw, 1.6rem);
+      color: var(--text-color);
+      margin-top: 15px;
     }
 
-    /* Floating Hearts Setup */
-    .hearts {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: -1;
+    /* Floating Picture Frame (Placeholder) */
+    .floating-frame {
+        position: absolute;
+        top: -40px;
+        right: -40px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: var(--background-soft);
+        border: 4px solid var(--secondary-color);
+        box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+        overflow: hidden;
+        animation: floatFrame 5s ease-in-out infinite alternate;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        color: var(--primary-color);
+        font-weight: bold;
+        padding: 5px;
     }
-    .heart {
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      background: #ff7f96;
-      box-shadow: 0 0 5px rgba(255, 64, 129, 0.5);
-      transform: rotate(45deg);
-      animation: float 8s infinite ease-in;
+    .floating-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
-    .heart::before,
-    .heart::after {
-      content: '';
-      position: absolute;
-      width: 25px;
-      height: 25px;
-      background: #ff7f96;
-      border-radius: 50%;
+    @media (max-width: 600px) {
+        .floating-frame { display: none; }
     }
-    .heart::before { top: -12.5px; left: 0; }
-    .heart::after { left: -12.5px; top: 0; }
     
     /* Button Styling with Pulse Animation */
     button {
-      margin-top: 30px;
-      padding: 15px 30px;
-      font-size: 1.2rem;
+      margin-top: 40px;
+      padding: 18px 35px;
+      font-size: 1.3rem;
       border: none;
-      border-radius: 30px;
-      background-color: #ff4081;
+      border-radius: 40px;
+      background-color: var(--secondary-color);
       color: white;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4);
+      box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6);
       font-weight: bold;
       letter-spacing: 1px;
-      animation: pulse 1.5s infinite; /* Added pulse animation */
+      animation: pulse 1.8s infinite; 
+      text-transform: uppercase;
     }
     button:hover {
-      background-color: #e73370;
+      background-color: var(--primary-color);
       transform: scale(1.05);
-      box-shadow: 0 0 25px rgba(255, 64, 129, 0.8);
-      animation: none; /* Stop pulsing on hover */
+      box-shadow: 0 0 30px rgba(138, 43, 226, 0.8);
+      animation: none;
     }
 
     /* --- Message Box Styles --- */
@@ -150,61 +159,64 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(0, 0, 0, 0.7);
+        background: rgba(0, 0, 0, 0.8);
         display: none;
         justify-content: center;
         align-items: center;
         z-index: 100;
-        backdrop-filter: blur(8px);
+        backdrop-filter: blur(10px);
     }
 
     .message-content {
-        background: white;
-        padding: 30px;
-        border-radius: 25px;
+        background: var(--background-soft);
+        padding: 40px;
+        border-radius: 30px;
         max-width: 90%;
-        width: 450px;
-        box-shadow: 0 0 40px rgba(255, 64, 129, 0.8), 0 10px 30px rgba(0, 0, 0, 0.3);
-        transform: scale(0.8);
+        width: 500px;
+        box-shadow: 0 0 50px var(--secondary-color), 0 15px 40px rgba(0, 0, 0, 0.4);
+        transform: scale(0.7);
         opacity: 0;
-        transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        text-align: left; /* Ensure the Bengali text is left-aligned and readable */
     }
     
     .message-box.visible .message-content {
         transform: scale(1);
         opacity: 1;
-        animation: wiggle 0.4s 1 ease-out;
+        animation: wiggle 0.5s 1 ease-out;
     }
 
     .message-content h2 {
-        color: #ff4081;
-        font-size: 2rem;
+        color: var(--primary-color);
+        font-size: 2.5rem;
         margin-top: 0;
-        border-bottom: 3px solid #ffd1dc;
+        border-bottom: 4px solid var(--secondary-color);
         padding-bottom: 15px;
+        text-align: center;
     }
 
     .message-content .message-text {
-        color: #555;
-        font-size: 1.2rem;
-        line-height: 1.7;
+        color: var(--text-color);
+        font-size: 1.1rem; /* Slightly smaller font for the long text */
+        line-height: 1.8;
         text-align: left;
+        white-space: pre-line; /* Essential for preserving line breaks */
     }
 
     .close-btn {
         display: block;
-        margin-top: 25px;
-        padding: 12px 25px;
-        background-color: #333;
+        margin-top: 30px;
+        padding: 15px 30px;
+        background-color: var(--text-color);
         color: white;
         border: none;
-        border-radius: 20px;
+        border-radius: 25px;
         cursor: pointer;
         transition: background-color 0.3s, transform 0.2s;
         font-weight: bold;
     }
     .close-btn:hover {
-        background-color: #ff4081;
+        background-color: var(--primary-color);
         transform: scale(1.05);
     }
 
@@ -213,8 +225,8 @@
         position: absolute;
         pointer-events: none;
         z-index: 99;
-        color: #ff4081;
-        font-size: 1.5rem;
+        color: var(--secondary-color);
+        font-size: 1.8rem;
         opacity: 0;
         transform: scale(0);
         transition: transform 0.3s ease-out, opacity 0.3s ease-out;
@@ -222,9 +234,14 @@
 
 
     /* Keyframe Animations */
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(0.5) rotate(45deg); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.2) rotate(45deg); opacity: 0; }
+    @keyframes starTwinkle {
+        0%, 100% { opacity: 0; transform: translateY(100vh); }
+        50% { opacity: 1; transform: translateY(-5vh); }
+    }
+    
+    @keyframes floatFrame {
+        0% { transform: translateY(0) rotate(-1deg); }
+        100% { transform: translateY(-15px) rotate(1deg); }
     }
     
     @keyframes buzz {
@@ -240,59 +257,67 @@
 
     @keyframes wiggle {
         0%, 100% { transform: scale(1) rotate(0deg); }
-        25% { transform: scale(1.05) rotate(-1deg); }
-        75% { transform: scale(1.05) rotate(1deg); }
+        25% { transform: scale(1.02) rotate(-1deg); }
+        75% { transform: scale(1.02) rotate(1deg); }
     }
 
     @keyframes pulse {
-        0% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4); }
-        50% { transform: scale(1.03); box-shadow: 0 5px 20px rgba(255, 64, 129, 0.7); }
-        100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 64, 129, 0.4); }
-    }
-
-    @keyframes fadeAndMove {
-        0% { top: 0; left: 0; opacity: 0; transform: scale(0.5); }
-        50% { opacity: 0.3; transform: scale(1); }
-        100% { top: 100%; left: 100%; opacity: 0; transform: scale(0.5); }
+        0% { transform: scale(1); box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6); }
+        50% { transform: scale(1.04); box-shadow: 0 6px 30px rgba(255, 105, 180, 0.9); }
+        100% { transform: scale(1); box-shadow: 0 6px 20px rgba(255, 105, 180, 0.6); }
     }
 
   </style>
 </head>
 <body>
   
-  <div class="honeycomb-container">
-    <div class="honeycomb" style="top: 10%; left: 5%; animation-duration: 20s;"></div>
-    <div class="honeycomb" style="top: 60%; left: 80%; animation-duration: 18s; animation-delay: 6s;"></div>
-    <div class="honeycomb" style="top: 35%; left: 40%; animation-duration: 22s; animation-delay: 12s;"></div>
+  <div class="star-container">
+    <!-- Star Emojis -->
+    <div class="star" style="top: 80%; left: 15%; animation-duration: 12s;">⭐</div>
+    <div class="star" style="top: 10%; left: 90%; animation-duration: 14s;">✨</div>
+    <div class="star" style="top: 50%; left: 50%; animation-duration: 10s;">💫</div>
+    <div class="star" style="top: 30%; left: 5%; animation-duration: 15s;">⭐</div>
   </div>
 
   <div class="content-container">
-    <h1>Happy Birthday Angry Bee <span class="bee-buzz">🐝</span></h1>
-    <p>You’re the sweetest sting in my life 💕</p>
-    <button id="revealButton">Click Me 🎁</button>
+    <!-- Floating Frame -->
+    <div class="floating-frame">
+        Picture Placeholder
+    </div>
+    
+    <h1>Happyy birthdayy madamm <span class="bee-buzz">🎂</span></h1>
+    <p>Every moment with you is magic. Are you ready for your present?</p>
+    <button id="revealButton">CLICK FOR MAGIC 🌟</button>
   </div>
-
-  <div class="hearts" id="hearts"></div>
   
   <!-- The message modal structure -->
   <div class="message-box" id="messageBox">
     <div class="message-content">
-        <!-- Message content is placed here -->
-        <h2>A Message Just For You</h2>
+        <!-- The long Bengali message is placed here -->
+        <h2>My Dear Person</h2>
         <p class="message-text">
-            To my **One-and-Only Angry Bee** 💖,
+            accha asha korii ewwwsha mam ei web e thik thak moto ashte parsen. ekhn bajtese umm 12.30pm soo ami ajk chinta kore rakhsii iccha kore sharadin jhogra korbo jeno apni bhaben apnr birthday ami bhule gesi nd wish korbona. so i think eta one type of surprise hobe? 
             <br><br>
-            Happy Birthday! Every single day with you is sweeter than the finest honey. You bring so much light, laughter, and a little bit of beautiful chaos into my life. Even when you're buzzing around being "angry," you're still the most adorable thing I know. Thank you for being my everything. I cherish all our moments and can't wait to make a million more.
+            first of all agei bole dei maf chai ekhn ami romanticism korar mood e nai so bhai ehn romantisism korbo na so mafff kore dien. ekhn kotha hocche rltn er pray 4 months hoe gese damn. 5 mash ageo ami kaleshi aurat meaning bujhtamna but bhaire ekhn bujhe gesi kaleshi aurat jinis ta kiiii. but tbh kalesh korte ashole kharap lagena amr mojai lageeeee . like apnr obstha emn " ei oye tmrei msg dilo ken hmm? tmr e doshhh shob dosh tmr." yes mam ami mene nicchii shob dosh e amrrr.
             <br><br>
-            You are my sun, my moon, and all my stars. ✨
-            <br>
-            Forever Yours,
-            Your King 👑
+            then hocche gie dhong kora ore bhaire bhai ki dhong je korte pare ei meye. ammu khabar bere dey nai ken? ami khabona...abr ammu dake nai khaite tai khabona. khaise maneeee ki j bolbo unareee. r ei eksec matro mane 1ta baje ekhn, tmi bolteso breakfast koronai ei mia thappor chino? rag dekhaya khawa dawa bondho koro ken hmm? accha eta nie kalesh pore koraa jabenneeee
+            <br><br>
+            accha shunen ami apnr pic story dibo na karon amr shobdi frnd harami deha jabe ki na ki kore fele orai janeee tai story dibona instayysorryyyy
+            <br><br>
+            r ehn aise " shonoo amder break neya uchit" ehhh aise break nibee uni .ekebare ami morar age porjonto tmre jalaboo hmm.. mara khao gieeee
+            <br><br>
+            accha jaihokk happpy birthday babbyyy ( jodio ami agei bolsi amr mote apni eto sweett,cute, r shundor je apnr existence upolokkhe protidin birthday palon kora uchitt..but tao wish korlam rki) thankiu madam exist korar jonnoo r amare arekta mommy deyar jonnooo. asha korii amra aroo onk onkk kalesh korte parbooo ekshatheee .r haeee amakee aroo beshi beshi shujog diben apnk jalanorrrr bujhsenn..mahin lovesss u alottttt ummmmmmaaaaaaaaaaah
+            <br><br>
+shunen ami ei page ba web whatever eta sent korbo wp e thik rat 11.50 e . apni ask korte paren je 11.50 e ken ....karon hoilo 12tar pore too apnk onekeii wish korbee for sureee ami nahole 11.50 ei korlam ki bolen?
+            <br><br>
+            r arekta bepr apni abr bhebe boishen na je ami ei web ba page nijer dokkhota die banaisi hur na ami eshb parinaaa. ami khali 2 hour dhore boshe script banaisi r chatgptr theika code banaye github theke 1 hour dhore boshe web banaisiii
+            <br><br>
+            ohhaeee lastly ami link sent kore wp theke ber hoe ghumaite chole jabo bujhsen? ekhn ktha hocche apni amk apnr snap dibenn deyaii lagbeeeeee diteii hobeee. r shunen mam sorryyy ami sharadin ajk jhograaa korboo taiii sorryyyyyyyy. r apni jodi mane 12tar age dinner na kore thaken tahole dinner kore niben thikase? rat jege thaikken na gotokal 5tay ghumaisen apniiii so rat jagbennaaa.. soo goodd nighttt mamm ( dupur 1.22 baje good night boltesi haire ) klk shokale ammu bashay thakle msg dien okay? byeeeeeeeee ummmmmmmmmmmmmmmmmaaaaaaaah
         </p>
-        <button class="close-btn" onclick="hideMessage()">Close and Celebrate!</button>
+        <button class="close-btn" onclick="hideMessage()">Close and Accept My Love!</button>
     </div>
   </div>
-
+            
   <script>
     const messageBox = document.getElementById('messageBox');
     const revealButton = document.getElementById('revealButton');
@@ -302,81 +327,50 @@
     revealButton.addEventListener('click', showMessage);
 
     function showMessage() {
-      // 1. Make the container visible immediately
       messageBox.style.display = 'flex'; 
-      
-      // 2. Wait a small moment, then add the 'visible' class to trigger the CSS transition (bounce and wiggle)
       setTimeout(() => {
           messageBox.classList.add('visible');
       }, 10);
-      
-      // Optional: Hide the main button after clicking
       revealButton.style.display = 'none'; 
     }
 
     function hideMessage() {
-      // 1. Trigger the CSS transition reversal
       messageBox.classList.remove('visible');
-      
-      // 2. Wait for the transition to finish (0.5s + margin) before setting display: none
       setTimeout(() => {
           messageBox.style.display = 'none';
-      }, 500);
-      
-      // 3. Show the button again if user closes the box, in case they want to read it again.
+      }, 600);
       revealButton.style.display = 'block'; 
     }
     
-    // --- Floating Hearts Logic ---
-    function createHeart() {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      // Ensure heart starts within 80vw to avoid overflow off-screen on some mobiles
-      heart.style.left = Math.random() * 80 + 10 + "vw"; 
-      heart.style.animationDuration = (5 + Math.random() * 5) + "s";
-      document.getElementById("hearts").appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
-    }
-    
-    // Start the hearts immediately
-    setInterval(createHeart, 500);
-
     // --- Cursor Trail Logic (The "Super Fancy" part) ---
-    const trailElements = ['💖', '✨', '🍯']; // Cute emojis for the trail
+    const trailElements = ['💖', '✨', '⭐']; // Cute emojis for the trail
     let trailIndex = 0;
 
     body.addEventListener('mousemove', (e) => {
-        // Only create a trail element every 20ms to avoid too much clutter
-        if (Date.now() % 20 > 5) return; 
+        if (Date.now() % 30 > 10) return; 
 
         const trail = document.createElement('span');
         trail.className = 'cursor-trail';
         trail.innerHTML = trailElements[trailIndex];
         
-        // Cycle through the emojis
         trailIndex = (trailIndex + 1) % trailElements.length;
 
-        // Position the trail element slightly above the cursor
         trail.style.left = e.pageX + 'px';
-        trail.style.top = e.pageY - 10 + 'px'; 
+        trail.style.top = e.pageY - 15 + 'px'; 
         
         body.appendChild(trail);
 
-        // Animate the trail item to fade out and shrink
         setTimeout(() => {
             trail.style.opacity = '1';
             trail.style.transform = 'scale(1)';
         }, 10);
 
-        // Remove the trail element after its animation finishes
         setTimeout(() => {
+            // Bhul kore chole asha HTML tags gulo ekhane chilo, shegulo shoriye deya holo.
             trail.style.opacity = '0';
             trail.style.transform = 'scale(0.5)';
-        }, 200);
-
-        setTimeout(() => {
-            trail.remove();
-        }, 500);
+            trail.remove(); 
+        }, 500); // Remove faster for smoother trail
     });
     
   </script>
