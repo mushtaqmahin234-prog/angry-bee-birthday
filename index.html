@@ -178,6 +178,12 @@
         opacity: 0;
         transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         text-align: left; /* Ensure the Bengali text is left-aligned and readable */
+        
+        /* FIX: Ensure content can scroll */
+        max-height: 85vh; /* Max height to fit comfortably on screen */
+        overflow-y: auto; /* Add vertical scrollbar if content overflows */
+        display: flex; /* Use flex to manage inner content better */
+        flex-direction: column;
     }
     
     .message-box.visible .message-content {
@@ -193,6 +199,7 @@
         border-bottom: 4px solid var(--secondary-color);
         padding-bottom: 15px;
         text-align: center;
+        flex-shrink: 0; /* Prevent header from shrinking */
     }
 
     .message-content .message-text {
@@ -201,8 +208,11 @@
         line-height: 1.8;
         text-align: left;
         white-space: pre-line; /* Essential for preserving line breaks */
+        padding-right: 15px; /* Added padding to make space for scrollbar */
+        flex-grow: 1;
     }
-
+    
+    /* Ensure the button stays visible at the bottom of the modal */
     .close-btn {
         display: block;
         margin-top: 30px;
@@ -214,6 +224,7 @@
         cursor: pointer;
         transition: background-color 0.3s, transform 0.2s;
         font-weight: bold;
+        flex-shrink: 0; /* Prevent button from shrinking */
     }
     .close-btn:hover {
         background-color: var(--primary-color);
@@ -366,7 +377,6 @@ shunen ami ei page ba web whatever eta sent korbo wp e thik rat 11.50 e . apni a
         }, 10);
 
         setTimeout(() => {
-            // Bhul kore chole asha HTML tags gulo ekhane chilo, shegulo shoriye deya holo.
             trail.style.opacity = '0';
             trail.style.transform = 'scale(0.5)';
             trail.remove(); 
